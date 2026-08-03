@@ -1,0 +1,75 @@
+Project social_network_system {
+  database_type: 'PostgreSQL'
+  Note: 'БД социальная сеть путешественников'
+}
+Table users {
+id uiid [PK]
+full_name varchar (300) [not null]
+email varchar (255)
+username varchar (50)
+password varchar (255)
+created_at timestamp
+private bool
+}
+Table followers {
+  id uiid 
+  follower_id uiid 
+  follows_id uiid
+  active bool
+  blacklist bool 
+  created_at timestamp
+}
+Table post {
+  id uiid 
+  user_id uiid
+  title varchar (100)
+  text text
+  like_count int
+  commen_count int
+  latitude decimal(9,6)
+  longitude decimal(9,6)
+  create_at timestamp
+  published_at timestamp
+  update_at timestamp
+  is_deleted bool
+  deleted_at timestamp
+}
+Table post_photo {
+  post_id uiid 
+  media_id uiid
+}
+Table media {
+  id uiid 
+  url text
+  created_at timestamp
+  deleted_at timestamp
+}
+Table likes {
+  id uiid 
+  post_id uiid 
+  user_id uiid 
+  created_at timestamp
+  active bool
+}
+Table comments {
+  id uiid
+  post_id uiid 
+  user_id uiid
+  comment text
+  created_at timestamp
+  update_at timestamp
+  active bool
+}
+Table message {
+  id uiid 
+  sender_id uiid
+  recipient uiid 
+  message text
+  send_date timestamp
+  read bool
+  read_date timestamp
+  update_at timestamp
+  is_delete bool
+  deleted_at timestamp 
+}
+

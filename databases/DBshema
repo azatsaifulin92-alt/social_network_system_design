@@ -36,6 +36,7 @@ Table post {
 }
 Table post_photo {
   post_id uiid 
+  message_id uiid 
   media_id uiid
 }
 Table media {
@@ -63,7 +64,7 @@ Table comments {
 Table message {
   id uiid 
   sender_id uiid
-  recipient uiid 
+  recipient_id uiid 
   message text
   send_date timestamp
   read bool
@@ -72,3 +73,16 @@ Table message {
   is_delete bool
   deleted_at timestamp 
 }
+ref: users.id < post.user_id
+ref: post.id < comments.post_id
+ref: post.id < post_photo.post_id
+ref: post.id < likes.post_id
+ref: media.id < post_photo.media_id
+ref: message.id < post_photo.message_id
+ref: users.id < likes.user_id
+ref: users.id < comments.user_id
+ref: users.id < followers.follower_id
+ref: users.id < followers.follows_id
+ref: users.id < message.sender_id
+ref: users.id < message.recipient_id
+
